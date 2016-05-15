@@ -21,9 +21,9 @@ image_url=url+s
 res = requests.get(image_url)
 with open(os.path.join('Bing',cd+'.bmp'),'wb') as file:
     file.write(res.content) 
-p=subprocess.Popen(['runas', '/user:Yash Mittal', 'REG ADD "HKCU\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "'+os.getcwd()+'\Bing'+chr(92)+cd+'.bmp" /f'])
+p=subprocess.Popen(['runas', '/user:'+os.getlogin(), 'REG ADD "HKCU\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "'+os.getcwd()+'\Bing'+chr(92)+cd+'.bmp" /f'])
 p.communicate()
 p.wait()
-p=subprocess.Popen(['runas', '/user:Yash Mittal', 'RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters'])
+p=subprocess.Popen(['runas', '/user:'+os.getlogin(), 'RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters'])
 p.communicate()
 p.wait()
