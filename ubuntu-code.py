@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 # -*- coding: UTF-8 -*-
 import requests
-from bs4 import BeautifulSoup
 import os
 import datetime
 
@@ -9,8 +8,7 @@ dt = datetime.datetime.now()
 cd = str(dt.year)+'0'+str(dt.month)+str(dt.day)
 os.makedirs('Bing',exist_ok=True)
 url = 'http://www.bing.com/' 
-sc = requests.get(url)
-soup = BeautifulSoup(sc.text,'lxml')	
+soup = requests.get(url)
 p=13+soup.text.find("g_img=")
 s=''
 while soup.text[p]!="'" and soup.text[p]!='"':
